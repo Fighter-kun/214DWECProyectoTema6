@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+        Descripción: CodigoEjercicio6.3
+        Autor: Carlos García Cachón
+        Fecha de creación/modificación: 12/12/2023
+-->
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="author" content="Carlos García Cachón" />
+  <meta name="description" content="CodigoEjercicio6.3" />
+  <meta name="keywords" content="CodigoEjercicio, 6.3" />
+  <meta name="generator" content="Apache NetBeans IDE 19" />
+  <meta name="generator" content="60" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Carlos García Cachón</title>
+  <link rel="icon" type="image/jpg" href="../webroot/media/images/favicon.ico" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../webroot/css/style.css" />
+  <style>
+    #capa {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      outline: 1px solid black;
+      left: 25%;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="text-center">
+    <h1>
+      3. Crear una aplicación web que muestre una capa centrada que ocupe el 50% del ancho y el alto de la ventana.
+    </h1>
+    <!-- 
+      a. Inicialmente la capa será blanca y solo se verá el borde.  
+      b. Al acercar el ratón se colorea de verde.  
+      c. Al hacer clic encima con el botón principal se colorea de rojo, pero solo mientras el botón principal está abajo, si está arriba, 
+      entonces se quita el color rojo.  
+      d. Al hacer clic encima con el botón secundario ocurre lo mismo que en el caso anterior, pero se muestra el color azul. 
+      No se mostrará en ningún caso el menú de contexto. 
+    -->
+  </header>
+  <main>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col text-center">
+          <div id="capa"></div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              // Obtén la referencia al elemento que seguirá al cursor
+              var elementoCapa = document.getElementById('capa');
+              // Agrega un event listener para el punto B
+              elementoCapa.addEventListener('mouseover', function (event) {
+                elementoCapa.style.backgroundColor = 'green';
+              });
+              // Para revertir el punto B
+              elementoCapa.addEventListener('mouseout', function (event) {
+                elementoCapa.style.backgroundColor = 'white';
+              });
+              // Agrega un event listener para el punto C y D
+              elementoCapa.addEventListener('mousedown', function (event) {
+                if (event.button == '0') {
+                  elementoCapa.style.backgroundColor = 'red';
+                } else {
+                  if (event.button == '2') {
+                  elementoCapa.style.backgroundColor = 'blue';
+                }
+                }
+              });
+              // Para revertir el punto C
+              elementoCapa.addEventListener('mouseup', function (event) {
+                elementoCapa.style.backgroundColor = 'green';
+              });
+              // Quitar cuadro al presionar el boton 2 del ratón
+              elementoCapa.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+              });
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="position-fixed bottom-0 end-0">
+    <div class="row text-center">
+      <div class="footer-item">
+        <address>
+          ©
+          <a href="../../index.html" style="
+                color: white;
+                text-decoration: none;
+                background-color: #666;
+              ">Carlos García Cachón</a>
+          IES LOS SAUCES 2023-24
+        </address>
+      </div>
+      <div class="footer-item">
+        <a href="../indexProyectoTema6.html" style="color: white; text-decoration: none; background-color: #666">
+          Inicio</a>
+      </div>
+      <div class="footer-item">
+        <a href="https://github.com/Fighter-kun/214DWECProyectoTema6.git" target="_blank"><img
+            src="../webroot/media/images/github.png" alt="LogoGitHub" class="pe-5" /></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

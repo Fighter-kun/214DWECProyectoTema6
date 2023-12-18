@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+        Descripción: CodigoEjercicio6.6
+        Autor: Carlos García Cachón
+        Fecha de creación/modificación: 18/12/2023
+-->
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Carlos García Cachón">
+        <meta name="description" content="CodigoEjercicio6.6">
+        <meta name="keywords" content="CodigoEjercicio, 6.6">
+        <meta name="generator" content="Apache NetBeans IDE 19">
+        <meta name="generator" content="60">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Carlos García Cachón</title>
+        <link rel="icon" type="image/jpg" href="../webroot/media/images/favicon.ico"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="../webroot/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+        <style>
+            .col {
+                font-size: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="text-center">
+            <h1>6. Crea una aplicación que muestre dos capas del mismo tamaño concretamente 200 píxeles de ancho por 100 de alto. La primera capa mostrará el texto “Soy arrastrable” y tendrá fondo amarillo y la segunda
+                                            muestra “Soy el destino” y tiene fondo blanco...:</h1>
+        </header>
+        <main>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col">
+                        <pre><code class="language-javascript">
+                            // Esperar a que el DOM esté completamente cargado antes de ejecutar el script
+                            document.addEventListener("DOMContentLoaded", function () {
+                              // Obtener las referencias a los elementos del DOM
+                              var capa1 = document.getElementById('capa1');
+                              var capa2 = document.getElementById('capa2');
+
+                              // Agregar el evento dragstart para iniciar el movimiento
+                              capa1.addEventListener('dragstart', function (event) {
+                                // Aplicar la clase 'arrastrando' para darle opacidad al elemento arrastrado
+                                capa1.classList.add('arrastrando');
+                              });
+
+                              // Agregar el evento dragenter para indicar dónde vamos a colocar la capa1
+                              capa2.addEventListener('dragenter', function (event) {
+                                event.preventDefault(); // Prevenir el comportamiento por defecto del navegador
+                                capa2.classList.add('combinando'); // Aplicar clase para indicar visualmente la posibilidad de combinar
+                              });
+
+                              // Agregar el evento dragover para permitir soltar en capa2
+                              capa2.addEventListener('dragover', function (event) {
+                                event.preventDefault(); // Prevenir el comportamiento por defecto del navegador
+                              });
+
+                              // Agregar el evento dragleave para indicar que estamos fuera de capa2
+                              capa2.addEventListener('dragleave', function (event) {
+                                event.preventDefault(); // Prevenir el comportamiento por defecto del navegador
+                                capa2.classList.remove('combinando'); // Quitar la clase que indicaba la posibilidad de combinar
+                              });
+
+                              // Agregar el evento drop para manejar el soltar en capa2
+                              capa2.addEventListener('drop', function (event) {
+                                event.preventDefault(); // Prevenir el comportamiento por defecto del navegador
+                                capa2.classList.remove('combinando'); // Quitar la clase que indicaba la posibilidad de combinar
+
+                                // Verificar si capa1 se estaba arrastrando
+                                if (capa1.classList.contains('arrastrando')) {
+                                  capa1.style.display = 'none'; // Ocultar capa1
+                                  capa2.textContent = 'Lo has logrado'; // Cambiar el contenido de capa2
+                                }
+                              });
+
+                              // Agregar el evento dragend para limpiar después de soltar o cancelar el arrastre
+                              capa1.addEventListener('dragend', function (event) {
+                                capa1.classList.remove('arrastrando'); // Quitar la clase 'arrastrando'
+                              });
+                            });
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="position-fixed bottom-0 end-0">
+            <div class="row text-center">
+                <div class="footer-item">
+                    <address>© <a href="../../index.html" style="color: white; text-decoration: none; background-color: #666">Carlos García Cachón</a>
+                        IES LOS SAUCES 2023-24 </address>
+                </div>
+                <div class="footer-item">
+                    <a href="../indexProyectoTema6.html" style="color: white; text-decoration: none; background-color: #666">Inicio</a>
+                </div>
+                <div class="footer-item">
+                    <a href="https://github.com/Fighter-kun/214DWECProyectoTema6.git" target="_blank"><img
+                            src="../webroot/media/images/github.png" alt="LogoGitHub" class="pe-5"/></a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    </body>
+
+</html>
